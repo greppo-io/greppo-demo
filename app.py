@@ -2,6 +2,7 @@ from greppo import app
 import geopandas as gpd
 
 sfo_amenities = gpd.read_file("./datasets/SFO_Amenities.geojson")
+amenities = list(sfo_amenities['amenity'].unique())
 
 app.base_layer(
     name="CartoDB Light",
@@ -19,11 +20,27 @@ app.overlay_layer(
     visible=True,
 )
 
-area_selection = gpd.read_file("./datasets/SFO_Selection.geojson")
-draw_feature_polygon = app.draw_feature(
-    name="Draw area selection", features=area_selection, geometry=["Polygon"]
+default_area_selection = gpd.read_file("./datasets/SFO_Selection.geojson")
+area_selection = app.draw_feature(
+    name="Draw area selection", features=default_area_selection, geometry=["Polygon"]
 )
 
-selected_amenities = sfo_amenities[sfo_amenities.within(area_selection)]
+selected_amenities = sfo_amenities.loc[sfo_amenities.within(area_selection.at[0, 'geometry'])]
+selected_amenities_count_df = selected_amenities['amenity'].value_counts()
 
+selected_amenities_count = []
 
+for amenity in amenities:
+    if(amenity in selected_amenities_count_df.index):
+        selected_amenities_count.append(selected_amenities_count_df[amenity].item())
+    else:
+        selected_amenities_count.append(0)
+
+app.bar_chart(
+    name="amenities-sfo-select",
+    title="Amenities in SFO",
+    description="The count of the basic amenities within the selected area in SFO.",
+    x=amenities,
+    y=selected_amenities_count,
+    backgroundColor="rgb(200, 50, 150)",
+)
