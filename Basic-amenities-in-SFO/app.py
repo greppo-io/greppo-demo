@@ -1,7 +1,7 @@
 from greppo import app
 import geopandas as gpd
 
-sfo_amenities = gpd.read_file("tests/SFO/SFO_Amenities.geojson")
+sfo_amenities = gpd.read_file("./SFO_Amenities.geojson")
 amenities = list(sfo_amenities['amenity'].unique())
 selected_amenities_count = dict.fromkeys(amenities, 0)
 
@@ -21,7 +21,7 @@ app.overlay_layer(
     visible=True,
 )
 
-default_area_selection = gpd.read_file("tests/SFO/SFO_Selection.geojson")
+default_area_selection = gpd.read_file("./SFO_Selection.geojson")
 area_selection = app.draw_feature(
     name="Draw area selection", features=default_area_selection, geometry=["Polygon"]
 )
