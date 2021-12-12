@@ -1,0 +1,17 @@
+### Build Image
+docker build -t greppo-demo .  ## build image
+docker images  ## list docker images
+
+### Run docker image locally
+docker run --publish 8080:8080 greppo-demo  ## start docker image
+
+
+### Setup docker hub
+docker login
+docker tag greppo-demo stangirala1/greppo-demo  ## setup tag with repo
+docker push stangirala1/greppo-demo  ## push to repo
+
+### Upload new version of the code
+pip install build
+python -m build 
+twine upload --verbose --skip-existing dist/*
