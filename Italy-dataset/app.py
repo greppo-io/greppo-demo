@@ -15,7 +15,7 @@ cities = gpd.read_file("./cities.geojson")
 
 app.overlay_layer(
     regions,
-    title="Regions of Italy",
+    name="Regions of Italy",
     description="Polygons showing the boundaries of regions of Italy.",
     style={"fillColor": "#74c476"},
     visible=True,
@@ -23,7 +23,7 @@ app.overlay_layer(
 
 app.overlay_layer(
     roads,
-    title="Highways in Italy",
+    name="Highways in Italy",
     description="Lines showing the major highways in Italy.",
     style={"fillColor": "#6a51a3"},
     visible=True,
@@ -31,7 +31,7 @@ app.overlay_layer(
 
 app.overlay_layer(
     cities,
-    title="Cities of Italy",
+    name="Cities of Italy",
     description="Points showing the cities in Italy.",
     style={"fillColor": "#de2d26"},
     visible=True,
