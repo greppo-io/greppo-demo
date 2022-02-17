@@ -9,11 +9,7 @@ This app counts the different amenities within the drawn polygon on the map, and
 app.display(value=some_text, name="some-text")
 
 app.base_layer(
-   name="CartoDB Light",
-   visible=True,
-   url="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}@2x.png",
-   subdomains=None,
-   attribution='&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors | Carto Tile',
+    provider="OpenStreetMap Mapnik",
 )
 
 sfo_amenities = gpd.read_file("./SFO_Amenities.geojson")
