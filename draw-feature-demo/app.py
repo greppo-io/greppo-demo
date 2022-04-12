@@ -9,7 +9,8 @@ This app counts the different amenities within the drawn polygon on the map, and
 app.display(value=some_text, name="some-text")
 
 app.base_layer(
-    provider="OpenStreetMap Mapnik",
+    provider="CartoDB Positron",
+    visible=True,
 )
 
 sfo_amenities = gpd.read_file("./SFO_Amenities.geojson")
@@ -48,7 +49,7 @@ app.line_chart(
    description="The count of the basic amenities within the selected area in SFO.",
    x=barX,
    y=barY,
-   backgroundColor="rgb(200, 50, 150)",
+   color="rgb(200, 50, 150)",
 )
 
 
