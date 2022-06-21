@@ -2,11 +2,9 @@
 
 FROM python:3.9-slim-buster
 
-WORKDIR /app
-COPY . .
+WORKDIR /src
+COPY /vector-demo .
 
 RUN pip3 install -r requirements.txt
 
-CMD ["echo $PATH"]
-
-CMD ["greppo", "serve", "app.py", "0.0.0.0", $PORT]
+CMD ["greppo", "serve", "app.py", "--host=0.0.0.0"]

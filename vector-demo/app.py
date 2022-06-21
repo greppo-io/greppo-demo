@@ -55,5 +55,5 @@ app.display(name='text-1', value=text_1)
 app.display(name='text-2',
             value='The following displays the count of polygons, lines and points as a barchart.')
 
-app.bar_chart(name='Geometry count', description='A bar-cart showing the count of each geometry-type in the datasets.',
+app.line_chart(name='Geometry count', description='A bar-cart showing the count of each geometry-type in the datasets.',
               x=['polygons', 'lines', 'points'], y=[len(regions), len(roads), len(cities)], color='#984ea3')

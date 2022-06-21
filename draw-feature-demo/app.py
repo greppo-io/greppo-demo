@@ -44,7 +44,7 @@ for idx, row in area_selection.iterrows():
 barX = list(selected_amenities_count.keys())
 barY = list(selected_amenities_count.values())
 
-app.line_chart(
+app.bar_chart(
    name="amenities-sfo-select",
    description="The count of the basic amenities within the selected area in SFO.",
    x=barX,
