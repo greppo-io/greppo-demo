@@ -15,8 +15,8 @@ app.base_layer(
 
 sfo_amenities = gpd.read_file("./SFO_Amenities.geojson")
 
-app.overlay_layer(
-   sfo_amenities,
+app.vector_layer(
+   data = sfo_amenities,
    name="SFO Amenities",
    description="Location of some basic amenities in San Francisco",
    style={"fillColor": "#F87979"},
@@ -27,7 +27,7 @@ default_area_selection = gpd.read_file("./SFO_Selection.geojson")
 # default_area_selection = gpd.GeoDataFrame({'geometry' : []}, crs="EPSG:4326")
 
 area_selection = app.draw_feature(
-   name="Draw area selection", features=default_area_selection, geometry=["Polygon"]
+   name="Draw area selection", features=default_area_selection, geometry=["Polygon", "Point", "LineString"]
 )
 
 amenities = list(sfo_amenities['amenity'].unique())
@@ -51,5 +51,9 @@ app.bar_chart(
    y=barY,
    color="rgb(200, 50, 150)",
 )
+
+text_1 = app.text(value='Enter text', name="text input 1")
+
+select1 = app.select(name="First selector", options=["a", "b", "c"], default="a")
 
 
